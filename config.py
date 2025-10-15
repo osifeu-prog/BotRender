@@ -5,7 +5,10 @@ load_dotenv()
 
 class Config:
     def __init__(self):
-        self.BOT_TOKEN = os.getenv('BOT_TOKEN', '')
+        self.BOT_TOKEN = os.getenv('BOT_TOKEN')
+        if not self.BOT_TOKEN:
+            raise ValueError("❌ BOT_TOKEN is required in environment variables")
+            
         self.ADMIN_ID = int(os.getenv('ADMIN_ID', '0'))
 
         # Blockchain settings
@@ -17,8 +20,10 @@ class Config:
         # SELA settings
         self.SELA_PRICE_ILS = 244
 
-        # Security
-        self.ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY', 'test_key_123456789012345678901234567890=')
+        # Security - MUST be set in environment
+        self.ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY')
+        if not self.ENCRYPTION_KEY:
+            raise ValueError("❌ ENCRYPTION_KEY is required in environment variables")
 
         # AI APIs
         self.OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
@@ -38,7 +43,7 @@ class Config:
         self.REWARDS_DATABASE_PATH = 'rewards.db'
 
         # Cache settings
-        self.CACHE_TIMEOUT = 300  # 5 דקות
+        self.CACHE_TIMEOUT = 300  # 5 minutes
         self.MAX_UPLOAD_SIZE = 10 * 1024 * 1024  # 10MB
 
         # Support
