@@ -1,13 +1,13 @@
 import os
 from dotenv import load_dotenv
 
+# טען את משתני .env לפני שימוש ב-os.getenv
 load_dotenv()
 
 class Config:
-    def __init__(self):
-        self.BOT_TOKEN = os.getenv('BOT_TOKEN')
-        if not self.BOT_TOKEN:
-            raise ValueError("❌ BOT_TOKEN is required in environment variables")
+    BOT_TOKEN = os.getenv("BOT_TOKEN")
+    if not BOT_TOKEN:
+        raise ValueError("❌ BOT_TOKEN is required in environment variables")
             
         self.ADMIN_ID = int(os.getenv('ADMIN_ID', '0'))
 
@@ -56,3 +56,4 @@ class Config:
 
         # Broadcast settings
         self.BROADCAST_DELAY = 0.1  # delay between broadcast messages
+
