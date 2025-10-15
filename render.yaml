@@ -1,10 +1,10 @@
-services:
-  - type: web
-    name: sela-bot
+﻿services:
+  - type: worker
+    name: sela-bot-worker
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python asgi_run.py
+    startCommand: python run.py
     envVars:
       - key: BOT_TOKEN
         sync: false
@@ -16,3 +16,9 @@ services:
         sync: false
       - key: ADMIN_ID
         sync: false
+      - key: BSC_RPC_URL
+        value: "https://bsc-dataseed.binance.org/"
+      - key: SELA_TOKEN_ADDRESS  
+        value: "0xACb0A09414CEA1C879c67bB7A877E4e19480f022"
+      - key: BSC_CHAIN_ID
+        value: "56"

@@ -1,19 +1,30 @@
-#!/usr/bin/env python3
-import logging, sys, os
+﻿#!/usr/bin/env python3
+"""
+SELA Bot - Main Entry Point with Advanced Debugging
+"""
+import logging
+import sys
+import os
+
+# Add project root to path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from main import SelaBot
 
-def main():
-    try:
-        print("🚀 Starting SELA Bot...")
-        bot = SelaBot()
-        bot.run()
-    except KeyboardInterrupt:
-        print("\n👋 Bot stopped by user")
-    except Exception as e:
-        print(f"❌ Bot crashed: {e}")
-        logging.error(f"Bot crash: {e}")
-        sys.exit(1)
-
-if __name__ == '__main__':
-    main()
+try:
+    # Initialize advanced debugging
+    from advanced_debug import debug
+    debug.log_system_info()
+    debug.log_database_status()
+    debug.log_import_status()
+    
+    # Import and run main bot
+    from main import SelaBot
+    debug.log_bot_ready()
+    
+    print("🚀 Starting SELA Bot with Advanced Debugging...")
+    bot = SelaBot()
+    bot.run()
+    
+except Exception as e:
+    logging.error(f"💥 Critical error during bot startup: {e}")
+    print(f"❌ Bot crashed: {e}")
+    sys.exit(1)
