@@ -1,0 +1,17 @@
+﻿.venv
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.env
+.env.*
+.git
+.gitignore
+dist/
+build/
+.DS_Store
+Thumbs.db
+wallets.db
+*.sqlite
+*.db
