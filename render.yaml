@@ -7,4 +7,17 @@ services:
     startCommand: python bot.py
     envVars:
       - key: BOT_TOKEN
-        value: your_bot_token_here
+        sync: false
+      - key: ENCRYPTION_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: HUGGINGFACE_TOKEN
+        sync: false
+      - key: ADMIN_ID
+        sync: false
+      - key: RENDER_EXTERNAL_URL
+        fromService:
+          type: web
+          name: sela-bot
+          envVarKey: RENDER_EXTERNAL_URL
